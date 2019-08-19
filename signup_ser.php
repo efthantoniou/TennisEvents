@@ -4,22 +4,20 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
     if( !empty($_POST["username"]) && !empty($_POST["inputPassword"]) && !empty($_POST["inputPasswordRe"]) && !empty($_POST["f_name"]) && !empty($_POST["l_name"]) && !empty($_POST["inputEmail"]) && !empty($_POST["date_bi"]) && !empty($_POST["priority"]) && !empty($_POST["gender"])){
         require_once('connection.php');
         $username = test_input($_POST["username"]);
-        $password = $_POST["inputPassword"];
+        $password = test_input($_POST["inputPassword"]);
         $password_re = test_input($_POST["inputPasswordRe"]);
         $f_name = test_input($_POST["f_name"]);
         $l_name = test_input($_POST["l_name"]);
         $email = test_input($_POST["inputEmail"]);
-        $date  = date('m-d-Y', strtotime($_POST["date_bi"]));
+        $date  = $_POST["date_bi"];
         $gender = test_input($_POST["gender"]);
         $prio = test_input($_POST["priority"]);
-        $number    = preg_match('@[0-9]@', $password);
 
         $query = "SELECT email,username FROM system_user WHERE email='$email' or username='$username'";
         $result_check = mysqli_query($link,$query);
         if(mysqli_num_rows($result_check) == 0){
             $filename = basename($_FILES['filename']['name']);
             $uploadfile = $uploaddir . $filename;
-            echo $uploadfile;
             if (move_uploaded_file($_FILES['filename']['tmp_name'], $uploadfile)) {
                 echo "File is valid, and was successfully uploaded.\n";
             } 
@@ -47,14 +45,6 @@ if( $_SERVER["REQUEST_METHOD"] == "POST"){
 else{
     header('Location: signup.php');
 }
-
-if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
-    echo "File is valid, and was successfully uploaded.\n";
-} else {
-    echo "Possible file upload attack!\n";
-}
-
-
 
 
 function test_input($data) {

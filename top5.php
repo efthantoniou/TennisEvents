@@ -16,7 +16,7 @@ session_start();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet"> 
+    <link href="css\cover.css" rel="stylesheet"> 
 </head>
 
 <body class="text-center">
@@ -47,7 +47,7 @@ session_start();
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <p>Εργασία για το μάθημα σχεδίαση εφαρμογών και υπηρεσιών διαδικτύου.<br>Αντωνίου Ευθύμιος<br>Καπίρης Αναστάσιος.</p>
+                <p>Εργασία για το μάθημα σχεδίαση εφαρμογών και υπηρεσιών διαδικτύου.<br>Αριστείδης Μουζακίτης<br>Ευθύμιος Αντωνίου<br>Παναγιώτης Διαμαντόπουλος .</p>
             </div>
         </footer>
     </div>

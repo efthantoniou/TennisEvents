@@ -1,8 +1,8 @@
 <?php
-session_start();
-if(isset($_SESSION['username'])){
-    header('Location: index.php');
-}
+    session_start();
+    if(isset($_SESSION['username'])){
+        header('Location: index.php');
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -20,7 +20,7 @@ if(isset($_SESSION['username'])){
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
+    <link href="css\signin.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
@@ -61,31 +61,32 @@ if(isset($_SESSION['username'])){
                     <option value="back">Backoffice</option>
                     <option value="player">Tennis Player</option>
                 </select>
-                <input type="hidden" name="MAX_FILE_SIZE" value="30000" />
+                <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
                 <div class="custom-file">
                     <input type="file" name="filename" id="customFile" class="custom-file-input">
                     <label class="custom-file-label" for="customFile">Choose file</label>
                 </div>
-                <input id="date_bi" name="date_bi" id="date_bi" type="date">
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+                <input id="date_bi" name="date_bi" id="date_bi" type="date"><br>
+                <button class="btn btn-lg btn-primary " type="submit">Sign Up</button>
+                <button class="btn btn-lg btn-danger" type="reset">Reset</button>
                 <a href="signin.php">
                     <h5>Already a user?</h5>
                 </a>
             </form>
             <script>
+                //allazei to onoma sto file field.
                 // Add the following code if you want the name of the file appear on select
                 $(".custom-file-input").on("change", function() {
                     var fileName = $(this).val().split("\\").pop();
                     $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
                 });
-
             </script>
 
         </main>
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <p>Εργασία για το μάθημα σχεδίαση εφαρμογών και υπηρεσιών διαδικτύου.<br>Αντωνίου Ευθύμιος<br>Καπίρης Αναστάσιος.</p>
+                <p>Εργασία για το μάθημα σχεδίαση εφαρμογών και υπηρεσιών διαδικτύου.<br>Αριστείδης Μουζακίτης<br>Ευθύμιος Αντωνίου<br>Παναγιώτης Διαμαντόπουλος .</p>
             </div>
         </footer>
     </div>
@@ -97,6 +98,7 @@ if(isset($_SESSION['username'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/core.js"></script>
 
 </body>
 

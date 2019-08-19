@@ -1,5 +1,10 @@
 <?php
-session_start();
+    session_start();
+    if(!isset($_SESSION['priority'])){//vale !
+        $temp="admin";
+        if( strncmp($_SESSION['priority'],$temp,strlen($temp)) )
+            header('Location: tennis_events.php');
+    }
 ?>
 <!doctype html>
 <html lang="en">
@@ -14,9 +19,11 @@ session_start();
 
     <!-- Bootstrap core CDN CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
+    
+    <script src="javascript/pagination_rev.js"></script>
+    <script src="javascript/removeSelected.js"></script>
     <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet"> 
+    <link href="css\cover.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
@@ -42,21 +49,29 @@ session_start();
         </header>
 
         <main role="main" class="inner cover">
-            <?php
-                $_SESSION['username']="Root";
-                if(isset($_SESSION['username']) && $_SESSION['username'] === "Root"){
+            <?php     
+                if(isset($_SESSION['username']) && $_SESSION['priority'] === "admin"){
                     echo '<nav class="nav nav-masthead justify-content-center">';
                     echo '  <a class="nav-link" href="add_event.php">Add</a>';
                     echo '  <a class="nav-link" href="edit.php">Edit</a>';
                     echo '  <a class="nav-link active" href="remove.php">Remove</a>';
                     echo '</nav>';
                 }
+                echo '<div id="events">';
+                echo '<button name="1" class="btn btn-lg btn-primary" onclick="previousPage(this.name)">Show</button>';
+                echo '</div>'; 
             ?>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item"><a href="#" class="page-link" name="1" id="previous" onclick="previousPage(this.name)">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link" name="1" id="next" onclick="nextPage(this.name)">Next</a></li>
+                </ul>
+            </nav>
         </main>
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <p>Εργασία για το μάθημα σχεδίαση εφαρμογών και υπηρεσιών διαδικτύου.<br>Αντωνίου Ευθύμιος<br>Καπίρης Αναστάσιος.</p>
+                <p>Εργασία για το μάθημα σχεδίαση εφαρμογών και υπηρεσιών διαδικτύου.<br>Αριστείδης Μουζακίτης<br>Ευθύμιος Αντωνίου<br>Παναγιώτης Διαμαντόπουλος .</p>
             </div>
         </footer>
     </div>

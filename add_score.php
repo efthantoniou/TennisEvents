@@ -1,10 +1,5 @@
 <?php
-    session_start();
-    if(!isset($_SESSION['priority'])){//vale !
-        $temp="admin";
-    //if( strncmp($_SESSION['priority'],$temp,strlen($temp)) )
-      //  header('Location: tennis_events.php');
-    }
+session_start();
 ?>
 <!doctype html>
 <html lang="en">
@@ -19,9 +14,12 @@
 
     <!-- Bootstrap core CDN CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
+    
+    <script src="javascript/add_score_pagination.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <!-- Custom styles for this template -->
-    <link href="css\signin.css" rel="stylesheet">
+    <link href="css\cover.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
@@ -50,45 +48,27 @@
             <?php
                 if(isset($_SESSION['username']) && $_SESSION['priority'] === "admin"){
                     echo '<nav class="nav nav-masthead justify-content-center">';
-                    echo '  <a class="nav-link active" href="add_event.php">Add</a>';
-                    echo '  <a class="nav-link" href="edit.php">Edit</a>';
-                    echo '  <a class="nav-link" href="remove.php">Remove</a>';
+                    echo '      <a class="nav-link" href="add_event.php">Add</a>';
+                    echo '      <a class="nav-link" href="edit.php">Edit</a>';
+                    echo '      <a class="nav-link" href="remove.php">Remove</a>';
                     echo '</nav>';
-                    
                 }
+                else if(isset($_SESSION['username']) && $_SESSION['priority'] === "back"){
+                    echo '<nav class="nav nav-masthead justify-content-center">';
+                    echo '      <a class="nav-link active" href="add_score.php">Add</a>';
+                    echo '</nav>';
+                }
+                echo '<div id="events">';
+                echo '<button name="1" class="btn btn-lg btn-primary" onclick="previousPage(this.name)">Show</button>';
+                echo '</div>'; 
             ?>
-            <form class="form-signin" action="add_event_ser.php" method="POST">
-                <input id="date" name="date_s" type="date" required>
-                <input id="date2" name="date_e" type="date" required>
-                <select name="type" size="1" class="form-control" required>
-                    <option value="tour">Tournament</option>
-                    <option value="knock">Knock-out</option>
-                </select>
-                <select name="gender" size="1" class="form-control" required>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                </select>
-                <select name="age_re" size="1" class="form-control" required>
-                    <option value="under">Underage</option>
-                    <option value="over">Over</option>
-                </select>
-                <input type="number" value="1" name="sets" min="1" max="3" placeholder="sets" required>
-                <?php
-                    require('connection.php');
-                    $query = "select f_name,l_name,user_id from system_user where priority='back'";
-                    $result = mysqli_query($link,$query);
-                    $id_temp = $_SESSION['id'];
-                    echo '<select name="backoff" size="1" class="form-control" required>';
-                    echo "<option value='$id_temp'>-</option>";
-                    while($row = mysqli_fetch_row($result)){
-                        $name = $row[0] . " " . $row[1];
-                        echo "<option value='$row[2]'>$name</option>";
-                    }
-                    echo '</select>';
-                    mysqli_close($link);
-                ?>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Add Event</button>
-            </form>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item"><a href="#" class="page-link" name="1" id="previous" onclick="previousPage(this.name)">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link" name="1" id="next" onclick="nextPage(this.name)">Next</a></li>
+                </ul>
+            </nav>    
+            <div id="events"></div>
         </main>
 
         <footer class="mastfoot mt-auto">
@@ -102,9 +82,7 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 </body>
 
 </html>

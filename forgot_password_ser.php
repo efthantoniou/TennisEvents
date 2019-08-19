@@ -3,7 +3,7 @@
     if( $_SERVER["REQUEST_METHOD"] == "POST"){
         if(!empty($_POST['email'])){
             $recovery = "Your password is: ".gen_paswd(10);
-            mail($_POST['email']),"Password Recovery",$recovery);
+            mail($_POST['email'],"Password Recovery",$recovery);
             header('Location: signin.php');
         }
 

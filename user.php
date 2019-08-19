@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!isset($_SESSION['username'])){// vale !
+    header('Location: index.php');
+}
 ?>
 <!doctype html>
 <html lang="en">
@@ -16,7 +19,7 @@ session_start();
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 
     <!-- Custom styles for this template -->
-    <link href="cover.css" rel="stylesheet"> 
+    <link href="css\cover.css" rel="stylesheet">
 </head>
 
 <body class="text-center">
@@ -42,16 +45,17 @@ session_start();
         </header>
 
         <main role="main" class="inner cover">
-            <h1 class="cover-heading">Add your photos</h1>
-            <p class="lead">This site gives you the edge at uploading your own amateur and profesional photos.</p>
-            <p class="lead">
-                <a href="contact.php" class="btn btn-lg btn-secondary">Learn more</a>
-            </p>
+            <form class='form-signin' method="POST" action='user_update.php'>
+                <input type="password" name="password" id="password" class="form-control" placeholder="Old Password" required>
+                <input type="password" name="new" id="new" class="form-control" placeholder="New Password" required>
+                <button class="btn btn-lg btn-success" type="submit">Submit</button>
+                <button class="btn btn-lg btn-danger" type="reset">Reset</button>
+            </form>
         </main>
 
         <footer class="mastfoot mt-auto">
             <div class="inner">
-                <p>Εργασία για το μάθημα σχεδίαση εφαρμογών και υπηρεσιών διαδικτύου.<br>Αντωνίου Ευθύμιος<br>Καπίρης Αναστάσιος.</p>
+                <p>Εργασία για το μάθημα σχεδίαση εφαρμογών και υπηρεσιών διαδικτύου.<br>Αριστείδης Μουζακίτης<br>Ευθύμιος Αντωνίου<br>Παναγιώτης Διαμαντόπουλος .</p>
             </div>
         </footer>
     </div>
